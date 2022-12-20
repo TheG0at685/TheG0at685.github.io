@@ -1,7 +1,7 @@
 extends KinematicBody2D
 
 
-var gun_cooldown = 120
+var gun_cooldown = 60
 var can_shoot = true
 
 
@@ -32,9 +32,10 @@ func shoot():
 		can_shoot = false
 	if can_shoot == false and gun_cooldown > 0:
 		gun_cooldown -= 1
-	if gun_cooldown == 0:
-		gun_cooldown = 120
+	if gun_cooldown <= 0:
+		gun_cooldown = 60
 		can_shoot = true
+	print(gun_cooldown)
 		
 func die():
 	# Die if they get hit by a bullet

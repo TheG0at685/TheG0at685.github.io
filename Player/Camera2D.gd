@@ -14,7 +14,11 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	pass
+	# Change the zoom depending on the level
+	if get_parent().get_parent().level == 3:
+		zoom = Vector2((get_parent().position.x + 1000) / 1000, (get_parent().position.x + 1000) / 1000)
+	else:
+		zoom = Vector2(1, 1)
 		
 func shake():
 	rotation = max_roll * amount * rand_range(-1, 1)

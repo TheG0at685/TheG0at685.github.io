@@ -7,7 +7,7 @@ var speed = 500
 # determines if it is the player or the enemy bullet
 var side
 
-
+var current_level
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass
@@ -18,7 +18,8 @@ func _process(delta):
 	velocity = Vector2()
 	velocity = Vector2(-speed, 0).rotated(rotation)
 	velocity = move_and_slide(velocity)
-	if $Collision.overlaps_body(get_parent().get_node("TileMap")):
+	
+	if $Collision.overlaps_body(get_parent().get_node("Player").current_level.get_node("TileMap")):
 		# If touching the map delete the instance and its object in the level array
 		if side == "player":
 			get_parent().player_bullets.erase(self)
@@ -38,6 +39,4 @@ func _process(delta):
 			if $Collision.overlaps_body(enemy):
 				get_parent().player_bullets.erase(self)
 				queue_free()
-		print(get_parent().get_node("Player").health)
-			
 

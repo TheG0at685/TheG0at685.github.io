@@ -9,7 +9,7 @@ const JUMP_SUBLIMIT = 40000000
 const WORLD_LIMIT=300000000000
 var jump_count=0
 var wall_slide_speed=0
-var wall_slide_max=500
+var wall_slide_max=5
 var is_working = true
 var earlyjump = false 
 var can_jump = false
@@ -27,7 +27,13 @@ var health = 100
 
 
 
+var current_level
+
+func _ready():
+	pass
+	
 func _physics_process(delta):
+	current_level = get_parent().level_instance
 	apply_gravity()
 	move_and_slide(motion,UP)
 	up_collision()
@@ -38,11 +44,13 @@ func _physics_process(delta):
 	early_jump(jump,left,right)
 	coyote_jump()
 	animate(left,right)
+	next_level()
 	if motion.y > 0:
 		# only let the player fire if we are falling
 		gun()
 	die()
 	$Gun_body.look_at(get_global_mouse_position())
+	print(rotation_degrees)
 	
 func gun():
 	if Input.is_action_pressed("fire") and gun_shots > 0 and can_fire:
@@ -67,9 +75,9 @@ func gun():
 		if $Collision.overlaps_area(refill.get_node("Area2D")):
 			can_fire = true
 			gun_shots = 10
-	if is_on_floor() and gun_shots < 10:
-		gun_shots += 0.1
-
+	if is_on_floor() or is_on_wall() and gun_shots < 10:
+		gun_shots = 10
+		
 
 
 func up_collision():
@@ -97,13 +105,12 @@ func apply_gravity():
 		#I changed this from 0 to 1 to make sure jump code detects that we are touching the floor
 	elif is_on_wall() and motion.y > 0:
 		if wall_slide_speed < wall_slide_max:
-			motion.y += 20
+			motion.y += 1
 			wall_slide_speed=motion.y
 		else:
 			wall_slide_speed=wall_slide_max
-			motion.y += 20
+			motion.y += 1
 	else:
-		print(gun_shots)
 		motion.y+=GRAVITY
 func movement(left,right):
 	if Input.is_action_pressed(left) and not Input.is_action_pressed(right):
@@ -195,12 +202,18 @@ func animate(left,right):
 				if Input.is_action_pressed(left):
 					$AnimatedSprite.flip_h=true
 					$AnimatedSprite.play("walk")
+					$Gun_body/Gun.flip_h=false
+					$Gun_body/Gun.flip_v=false
+					$Gun_body.position = Vector2(-70, 0)
 				else:
 					$AnimatedSprite.play("default")
 			elif motion.x > 0 and is_on_floor():
 				if Input.is_action_pressed(right):
 					$AnimatedSprite.flip_h=false
 					$AnimatedSprite.play("walk")
+					$Gun_body/Gun.flip_h=false
+					$Gun_body/Gun.flip_v=true
+					$Gun_body.position = Vector2(70, 0)
 				else:
 					$AnimatedSprite.play("default")
 		elif motion.y == 0 and is_on_wall():
@@ -239,7 +252,7 @@ func animate(left,right):
 func fire_gun(x, y):
 	# Causes the player to be launched directly away from x and y
 	if y > position.y:
-		motion.y -= maxi((y - position.y) * 6, 700)
+		motion.y -= maxi((y - position.y) * 6, 1000)
 		motion.y -= GRAVITY
 	create_bullet()
 	
@@ -265,7 +278,7 @@ func create_bullet():
 	
 func die():
 	# Every possible way to die! What a cheery function!
-	if position.y > 1000 or $Collision.overlaps_body(get_parent().get_node("Danger")):
+	if position.y > 1000 or $Collision.overlaps_body(current_level.get_node("Danger")):
 		health = -1
 	for bullet in get_parent().enemy_bullets:
 		if $Collision.overlaps_area(bullet.get_node("Collision")):
@@ -276,3 +289,10 @@ func die():
 		position = Vector2(90,0)
 		motion = Vector2(0,1000)
 	
+func next_level():
+	if Input.is_action_just_pressed("jump") and $Collision.overlaps_area(get_parent().level_instance.get_node("Area completion")):
+		print(2)
+		get_parent().level += 1
+		get_parent().change_level()
+		position = Vector2(90,0)
+		motion = Vector2(0,1000)
