@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Player/Player.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Levels/Level.gd" type="Script" id=3]
+[ext_resource path="res://Levels/Target.gd" type="Script" id=4]
+
+[sub_resource type="SphereMesh" id=3]
+
+[node name="Level" type="Node2D"]
+z_index = 1
+script = ExtResource( 3 )
+
+[node name="Player" parent="." instance=ExtResource( 2 )]
+position = Vector2( 90, 0 )
+scale = Vector2( 0.3, 0.3 )
+
+[node name="Target" type="KinematicBody2D" parent="."]
+script = ExtResource( 4 )
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="Target"]
+scale = Vector2( 10, 10 )
+mesh = SubResource( 3 )
