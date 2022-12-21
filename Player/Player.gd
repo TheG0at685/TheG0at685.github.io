@@ -44,12 +44,12 @@ func _physics_process(delta):
 	early_jump(jump,left,right)
 	coyote_jump()
 	animate(left,right)
-	next_level()
+	next_level(1)
 	if motion.y > 0:
 		# only let the player fire if we are falling
 		gun()
 	die()
-	$Gun_body.look_at(get_global_mouse_position())
+	$Gun_body.look_at(get_parent().get_node("Target").position)
 	print(rotation_degrees)
 	
 func gun():
@@ -286,13 +286,15 @@ func die():
 			
 	if health < 0:
 		health = 100
+		get_parent().change_level()
 		position = Vector2(90,0)
 		motion = Vector2(0,1000)
+
 	
-func next_level():
+func next_level(change):
 	if Input.is_action_just_pressed("jump") and $Collision.overlaps_area(get_parent().level_instance.get_node("Area completion")):
 		print(2)
-		get_parent().level += 1
+		get_parent().level += change
 		get_parent().change_level()
 		position = Vector2(90,0)
 		motion = Vector2(0,1000)

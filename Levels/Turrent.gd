@@ -35,7 +35,7 @@ func shoot():
 	if gun_cooldown <= 0:
 		gun_cooldown = 60
 		can_shoot = true
-	print(gun_cooldown)
+
 		
 func die():
 	# Die if they get hit by a bullet

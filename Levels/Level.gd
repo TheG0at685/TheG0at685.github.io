@@ -9,7 +9,7 @@ var enemys = []
 
 var level1
 var level_instance
-var level = 1
+var level = 4
 var pause_menu = load("res://Pause menu.tscn")
 var menu_instance = pause_menu.instance()
 
@@ -28,7 +28,7 @@ func change_level():
 	menu_instance.queue_free()
 	for e in enemys:
 		remove_child(e)
-	if level == 1 or level == 5:
+	if level == 1:
 		level1()
 	if level == 2:
 		level2()
@@ -36,6 +36,8 @@ func change_level():
 		level3()
 	if level == 4:
 		level4()
+	if level == 5:
+		level5()
 	pause_menu = load("res://Pause menu.tscn")
 	menu_instance = pause_menu.instance()
 	add_child(menu_instance)
@@ -66,3 +68,8 @@ func level4():
 		# Don't ask me why it muiltiplys by 31. It works, so we don't touch it
 		turrent_instance.position = Vector2(tur.x * 31, tur.y * 31)
 		enemys.append(turrent_instance)
+		
+func level5():
+	level1 = load("res://Level5.tscn")
+	level_instance = level1.instance()
+	add_child(level_instance)

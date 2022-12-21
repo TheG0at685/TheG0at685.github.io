@@ -17,6 +17,8 @@ func _process(delta):
 	# Change the zoom depending on the level
 	if get_parent().get_parent().level == 3:
 		zoom = Vector2((get_parent().position.x + 1000) / 1000, (get_parent().position.x + 1000) / 1000)
+	elif get_parent().get_parent().level == 5:
+		zoom = Vector2(2, 2)
 	else:
 		zoom = Vector2(1, 1)
 		
