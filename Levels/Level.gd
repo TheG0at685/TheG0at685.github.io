@@ -9,7 +9,7 @@ var enemys = []
 
 var level1
 var level_instance
-var level = 4
+var level = 1
 var pause_menu = load("res://Pause menu.tscn")
 var menu_instance = pause_menu.instance()
 
