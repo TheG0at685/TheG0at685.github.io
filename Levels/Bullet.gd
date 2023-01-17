@@ -39,4 +39,12 @@ func _process(delta):
 			if $Collision.overlaps_body(enemy):
 				get_parent().player_bullets.erase(self)
 				queue_free()
+				
+	# Get rid of the bullet if it's to far away to prevent lag
+	if position.distance_to(get_parent().get_node("Player").position) > 4000:
+		if side == "enemy":
+			get_parent().enemy_bullets.erase(self)
+		else:
+			get_parent().player_bullets.erase(self)
+		queue_free()
 

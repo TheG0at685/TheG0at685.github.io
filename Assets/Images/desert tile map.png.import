@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/slide.png-bd1d7e96d81ceffd4accaf0a6522cf23.stex"
+path="res://.import/desert tile map.png-db6baf9e28becc17f10b10d938e92ec1.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Player/slide.png"
-dest_files=[ "res://.import/slide.png-bd1d7e96d81ceffd4accaf0a6522cf23.stex" ]
+source_file="res://Assets/Images/desert tile map.png"
+dest_files=[ "res://.import/desert tile map.png-db6baf9e28becc17f10b10d938e92ec1.stex" ]
 
 [params]
 

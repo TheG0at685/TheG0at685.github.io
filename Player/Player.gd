@@ -25,6 +25,8 @@ var reloading = false
 
 var health = 100
 
+var respawn = Vector2()
+
 
 
 var current_level
@@ -50,7 +52,7 @@ func _physics_process(delta):
 		gun()
 	die()
 	$Gun_body.look_at(get_parent().get_node("Target").position)
-	print(rotation_degrees)
+
 	
 func gun():
 	if Input.is_action_pressed("fire") and gun_shots > 0 and can_fire:
@@ -278,7 +280,7 @@ func create_bullet():
 	
 func die():
 	# Every possible way to die! What a cheery function!
-	if position.y > 1000 or $Collision.overlaps_body(current_level.get_node("Danger")):
+	if position.y > 10000 or $Collision.overlaps_body(current_level.get_node("Danger")):
 		health = -1
 	for bullet in get_parent().enemy_bullets:
 		if $Collision.overlaps_area(bullet.get_node("Collision")):
@@ -286,15 +288,24 @@ func die():
 			
 	if health < 0:
 		health = 100
-		get_parent().change_level()
+		position = respawn
 		position = Vector2(90,0)
 		motion = Vector2(0,1000)
 
 	
 func next_level(change):
-	if Input.is_action_just_pressed("jump") and $Collision.overlaps_area(get_parent().level_instance.get_node("Area completion")):
-		print(2)
-		get_parent().level += change
-		get_parent().change_level()
-		position = Vector2(90,0)
-		motion = Vector2(0,1000)
+	for door in get_parent().level_instance.doors:
+		if $Collision.overlaps_area(door):
+			get_parent().level = door.trans_data["level"]
+			get_parent().change_level(door.trans_data["position"])
+			print(get_parent().level)
+	
+		
+	
+	
+		
+func glow():
+	if $WorldEnvironment.environment.glow_intensity < 2:
+		$WorldEnvironment.environment.glow_intensity += 0.5
+	else:
+		$WorldEnvironment.environment.glow_hdr_threshold -= 0.5

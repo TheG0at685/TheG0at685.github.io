@@ -23,21 +23,27 @@ func _ready():
 func _process(delta):
 	pass
 	
-func change_level():
+func change_level(position):
 	remove_child(level_instance)
 	menu_instance.queue_free()
 	for e in enemys:
 		remove_child(e)
 	if level == 1:
+		$Player.position = position
 		level1()
 	if level == 2:
+		$Player.position = position
 		level2()
 	if level == 3:
+		$Player.position = position
 		level3()
 	if level == 4:
+		$Player.position = position
 		level4()
 	if level == 5:
-		level5()
+		$Player.position = position
+		level4()
+		
 	pause_menu = load("res://Pause menu.tscn")
 	menu_instance = pause_menu.instance()
 	add_child(menu_instance)
@@ -61,13 +67,7 @@ func level4():
 	level1 = load("res://Level4.tscn")
 	level_instance = level1.instance()
 	add_child(level_instance)
-	for tur in level_instance.get_node("Turrents").get_used_cells():
-		var turrent = load("res://Turrent.tscn")
-		var turrent_instance = turrent.instance()
-		add_child(turrent_instance)
-		# Don't ask me why it muiltiplys by 31. It works, so we don't touch it
-		turrent_instance.position = Vector2(tur.x * 31, tur.y * 31)
-		enemys.append(turrent_instance)
+	
 		
 func level5():
 	level1 = load("res://Level5.tscn")

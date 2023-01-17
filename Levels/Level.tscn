@@ -1,8 +1,10 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
+[ext_resource path="res://Levels/UI.gd" type="Script" id=1]
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Levels/Level.gd" type="Script" id=3]
 [ext_resource path="res://Levels/Target.gd" type="Script" id=4]
+[ext_resource path="res://Assets/Images/egypt_bg.jpeg" type="Texture" id=5]
 
 [sub_resource type="SphereMesh" id=3]
 
@@ -20,3 +22,30 @@ script = ExtResource( 4 )
 [node name="MeshInstance2D" type="MeshInstance2D" parent="Target"]
 scale = Vector2( 10, 10 )
 mesh = SubResource( 3 )
+
+[node name="UI" type="CanvasLayer" parent="."]
+layer = 128
+script = ExtResource( 1 )
+
+[node name="ColorRect" type="ColorRect" parent="UI"]
+margin_left = -1156.0
+margin_top = -276.0
+margin_right = -141.0
+margin_bottom = -203.0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="UI/ColorRect"]
+margin_left = 321.0
+margin_top = -3.0
+margin_right = 381.0
+margin_bottom = 37.0
+rect_scale = Vector2( 5, 5 )
+custom_colors/default_color = Color( 0, 0, 0, 1 )
+custom_colors/selection_color = Color( 0, 0, 0, 1 )
+custom_colors/font_color_selected = Color( 0, 0, 0, 1 )
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="Sprite" type="Sprite" parent="ParallaxBackground"]
+position = Vector2( 504, 259 )
+scale = Vector2( 3.42642, 5.60714 )
+texture = ExtResource( 5 )

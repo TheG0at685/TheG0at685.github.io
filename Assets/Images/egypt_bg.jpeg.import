@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/walk.png-64efd0f4c286012a8670bccc64551851.stex"
+path="res://.import/egypt_bg.jpeg-7fbc06e157b445db178a3e7d33efcadb.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Player/walk.png"
-dest_files=[ "res://.import/walk.png-64efd0f4c286012a8670bccc64551851.stex" ]
+source_file="res://Assets/Images/egypt_bg.jpeg"
+dest_files=[ "res://.import/egypt_bg.jpeg-7fbc06e157b445db178a3e7d33efcadb.stex" ]
 
 [params]
 

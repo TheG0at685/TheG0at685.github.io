@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/default.png-5ec761b388f40396b4e313dbcdf8f3f5.stex"
+path="res://.import/mummie.png-e45ad0db1a9fbafcf1e767d7858e2ce6.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Player/default.png"
-dest_files=[ "res://.import/default.png-5ec761b388f40396b4e313dbcdf8f3f5.stex" ]
+source_file="res://mummie.png"
+dest_files=[ "res://.import/mummie.png-e45ad0db1a9fbafcf1e767d7858e2ce6.stex" ]
 
 [params]
 
