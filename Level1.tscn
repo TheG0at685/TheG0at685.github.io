@@ -369,7 +369,7 @@ format = 1
 script = ExtResource( 4 )
 
 [node name="door" type="Area2D" parent="."]
-position = Vector2( -1800, -393 )
+position = Vector2( -1713, -305 )
 script = ExtResource( 5 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="door"]
@@ -377,7 +377,7 @@ position = Vector2( 1, -19.5 )
 shape = SubResource( 8 )
 
 [node name="right" type="Area2D" parent="."]
-position = Vector2( 830, 3 )
+position = Vector2( 829, 78 )
 script = ExtResource( 7 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="right"]

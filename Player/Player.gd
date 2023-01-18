@@ -5,7 +5,7 @@ const UP=Vector2(0,-1)
 const SPEED=400
 const GRAVITY=51
 const JUMP_SPEED=1000
-const JUMP_SUBLIMIT = 40000000
+const JUMP_SUBLIMIT = 80
 const WORLD_LIMIT=300000000000
 var jump_count=0
 var wall_slide_speed=0
@@ -168,7 +168,7 @@ func jumping(jump,left,right):
 func jump_breaker(jump):
 	#this code adjusts the jump height by how much we hold jump key
 	if motion.y < -JUMP_SUBLIMIT and Input.is_action_just_released(jump):
-		motion.y = -JUMP_SUBLIMIT
+		motion.y = motion.y/5
 				
 func early_jump(jump,left,right):
 	#this is an important code for gamefeel
@@ -289,13 +289,13 @@ func die():
 	if health < 0:
 		health = 100
 		position = respawn
-		position = Vector2(90,0)
+		position = Vector2(0,0)
 		motion = Vector2(0,1000)
 
 	
 func next_level(change):
 	for door in get_parent().level_instance.doors:
-		if $Collision.overlaps_area(door):
+		if $Collision.overlaps_area(door) and Input.is_action_pressed("jump"):
 			get_parent().level = door.trans_data["level"]
 			get_parent().change_level(door.trans_data["position"])
 			print(get_parent().level)

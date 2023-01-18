@@ -416,6 +416,7 @@ points = PoolVector2Array( 0, 0, 70, 0, 70, 71, 0, 71 )
 14/z_index = 0
 
 [node name="Level2" type="KinematicBody2D"]
+position = Vector2( -2, 14 )
 script = ExtResource( 6 )
 
 [node name="Danger" type="TileMap" parent="."]
@@ -431,7 +432,7 @@ format = 1
 script = ExtResource( 4 )
 
 [node name="door2" type="Area2D" parent="."]
-position = Vector2( 563, 696 )
+position = Vector2( 557, 912 )
 scale = Vector2( 1, 100 )
 script = ExtResource( 7 )
 

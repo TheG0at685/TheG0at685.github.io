@@ -431,7 +431,7 @@ format = 1
 script = ExtResource( 4 )
 
 [node name="door3" type="Area2D" parent="."]
-position = Vector2( 1679, 263 )
+position = Vector2( 1657, 99 )
 scale = Vector2( 1, 100 )
 script = ExtResource( 5 )
 

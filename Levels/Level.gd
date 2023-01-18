@@ -42,7 +42,7 @@ func change_level(position):
 		level4()
 	if level == 5:
 		$Player.position = position
-		level4()
+		level5()
 		
 	pause_menu = load("res://Pause menu.tscn")
 	menu_instance = pause_menu.instance()
