@@ -1,7 +1,8 @@
 extends Area2D
 
 
-onready var trans_data = {"level": round(rand_range(7, 7)), "position": Vector2(0, 0)}
+var trans_data = {"level": rand_range(3, 7), "position": Vector2(0, 0)}
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

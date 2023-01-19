@@ -50,7 +50,7 @@ func level_transition(reset=false):
 		var power_ups = ["speed"]
 		rand_value = power_ups[randi() % power_ups.size()]
 		if rand_value == "speed":
-			get_parent().get_node("Player").SPEED *= 1.25
+			get_parent().get_node("Player").SPEED *= 1
 	if rand_value == "speed":
 		$Speed.visible = true
 			

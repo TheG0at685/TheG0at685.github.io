@@ -9,7 +9,7 @@ var enemys = []
 
 var level1
 var level_instance
-var level = 1
+var level = 7
 var pause_menu = load("res://Pause menu.tscn")
 var menu_instance = pause_menu.instance()
 
@@ -51,6 +51,9 @@ func change_level(position):
 	if level == 6:
 		$Player.position = position
 		level6()
+	if level == 7:
+		$Player.position = position
+		level7()
 		
 	pause_menu = load("res://Pause menu.tscn")
 	menu_instance = pause_menu.instance()
@@ -86,4 +89,10 @@ func level6():
 	level1 = load("res://Level6.tscn")
 	level_instance = level1.instance()
 	add_child(level_instance)
+
+func level7():
+	level1 = load("res://Level7.tscn")
+	level_instance = level1.instance()
+	add_child(level_instance)
+
 

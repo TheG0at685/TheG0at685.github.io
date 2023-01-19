@@ -41,10 +41,10 @@ animations = [ {
 } ]
 
 [sub_resource type="RectangleShape2D" id=6]
-extents = Vector2( 123.5, 158.5 )
+extents = Vector2( 60, 158.5 )
 
 [sub_resource type="RectangleShape2D" id=3]
-extents = Vector2( 132.2, 160.183 )
+extents = Vector2( 81.5217, 160.183 )
 
 [sub_resource type="SpriteFrames" id=8]
 animations = [ {
@@ -75,7 +75,7 @@ self_modulate = Color( 100, 100, 100, 1 )
 frames = SubResource( 1 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( -6.5, -2.5 )
+position = Vector2( 38, -2.5 )
 shape = SubResource( 6 )
 
 [node name="CoyoteTimer" type="Timer" parent="."]
@@ -84,7 +84,7 @@ wait_time = 0.1
 [node name="Collision" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Collision"]
-position = Vector2( -1.78189, -2 )
+position = Vector2( 33, -2 )
 scale = Vector2( 1.0304, 1.04256 )
 shape = SubResource( 3 )
 

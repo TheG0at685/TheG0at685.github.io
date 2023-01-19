@@ -15,6 +15,8 @@ var earlyjump = false
 var can_jump = false
 var can_wall_jump = false
 
+var godmode = false
+
 var left = "left"
 var right = "right"
 var jump = "jump"
@@ -47,13 +49,39 @@ func _physics_process(delta):
 	coyote_jump()
 	animate(left,right)
 	next_level(1)
+	if Input.is_action_just_pressed("god_mode"):
+		if godmode:
+			godmode = false
+		else:
+			godmode = true
+	if godmode:
+		god_mode()
+		
 	if motion.y > 0:
 		# only let the player fire if we are falling
 		gun()
 	die()
 	$Gun_body.look_at(get_parent().get_node("Target").position)
 
+func god_mode():
+	motion.x = 0
+	motion.y = 10
+	can_fire = true
+	gun_shots = 10000
+	if Input.is_action_pressed("jump"):
+		position.y -= 10
+	if Input.is_action_pressed("down"):
+		position.y += 10
+	if Input.is_action_pressed("right"):
+		position.x += 10
+	if Input.is_action_pressed("left"):
+		position.x -= 10
+	if Input.is_key_pressed(2):
+		print(1)
+		get_parent().change_level(Vector2(0, 0))
+		
 	
+		
 func gun():
 	if Input.is_action_pressed("fire") and gun_shots > 0 and can_fire:
 		$Camera2D.shake()
@@ -135,6 +163,7 @@ func left():
 				motion.x -= 50
 		else:
 			motion.x-=50
+			
 		
 func right():
 	if motion.x >= SPEED:
@@ -200,7 +229,7 @@ func animate(left,right):
 				$AnimatedSprite.play("jump")
 		elif motion.x != 0 and not is_on_wall():
 			$AnimatedSprite.get_sprite_frames().set_animation_speed("walk", 24)
-			if motion.x < 0 and is_on_floor():
+			if motion.x < 0:
 				if Input.is_action_pressed(left):
 					$AnimatedSprite.flip_h=true
 					$AnimatedSprite.play("walk")
@@ -209,7 +238,7 @@ func animate(left,right):
 					$Gun_body.position = Vector2(-70, 0)
 				else:
 					$AnimatedSprite.play("default")
-			elif motion.x > 0 and is_on_floor():
+			elif motion.x > 0:
 				if Input.is_action_pressed(right):
 					$AnimatedSprite.flip_h=false
 					$AnimatedSprite.play("walk")
@@ -240,12 +269,12 @@ func animate(left,right):
 				pass
 			elif is_on_floor():
 				$AnimatedSprite.play("default")
-		if not Input.is_action_pressed(left) and motion.x < 0:
+		if not Input.is_action_pressed(left) and motion.x <= 0:
 			$AnimatedSprite.get_sprite_frames().set_animation_speed("walk", 10)
 			if Input.is_action_pressed(right) and is_on_floor():
 				$AnimatedSprite.flip_h=true
 				$AnimatedSprite.play("slide")
-		if not Input.is_action_pressed(right) and motion.x > 0:
+		if not Input.is_action_pressed(right) and motion.x >= 0:
 			$AnimatedSprite.get_sprite_frames().set_animation_speed("walk", 10)
 			if Input.is_action_pressed(left) and is_on_floor():
 				$AnimatedSprite.flip_h=false
