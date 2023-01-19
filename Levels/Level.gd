@@ -21,11 +21,16 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	pass
+	if not $UI.done_transition:
+		$UI.level_transition()
+		$ParallaxBackground/backdrop.visible = true
+	else:
+		$ParallaxBackground/backdrop.visible = false
 	
 func change_level(position):
 	remove_child(level_instance)
 	menu_instance.queue_free()
+	$UI.level_transition(true)
 	for e in enemys:
 		remove_child(e)
 	if level == 1:
@@ -43,6 +48,9 @@ func change_level(position):
 	if level == 5:
 		$Player.position = position
 		level5()
+	if level == 6:
+		$Player.position = position
+		level6()
 		
 	pause_menu = load("res://Pause menu.tscn")
 	menu_instance = pause_menu.instance()
@@ -73,3 +81,9 @@ func level5():
 	level1 = load("res://Level5.tscn")
 	level_instance = level1.instance()
 	add_child(level_instance)
+	
+func level6():
+	level1 = load("res://Level6.tscn")
+	level_instance = level1.instance()
+	add_child(level_instance)
+

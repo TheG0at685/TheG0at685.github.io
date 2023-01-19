@@ -1,6 +1,7 @@
 extends CanvasLayer
 
-
+var done_transition = true
+var rand_value
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -41,3 +42,22 @@ func get_distance_to_closesed_door():
 		if temp_dist < dist:
 			dist = temp_dist
 	return dist
+	
+func level_transition(reset=false):
+	if reset:
+		done_transition = false
+		$Speed.scale = Vector2(0.01, 0.01)
+		var power_ups = ["speed"]
+		rand_value = power_ups[randi() % power_ups.size()]
+		if rand_value == "speed":
+			get_parent().get_node("Player").SPEED *= 1.25
+	if rand_value == "speed":
+		$Speed.visible = true
+			
+		if $Speed.scale.x < 1:
+			$Speed.scale.x += 0.01
+			$Speed.scale.y += 0.01
+		
+		else:
+			done_transition = true
+			$Speed.visible = false

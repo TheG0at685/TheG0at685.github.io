@@ -2,11 +2,16 @@
 
 importer="texture"
 type="StreamTexture"
-valid=false
+path="res://.import/speed.png-92f4109760f58c86e4af445e9cc50a12.stex"
+metadata={
+"vram_texture": false
+}
 
 [deps]
 
-source_file="res://Thunder bolt.png"
+source_file="res://Assets/Images/speed.png"
+dest_files=[ "res://.import/speed.png-92f4109760f58c86e4af445e9cc50a12.stex" ]
+
 [params]
 
 compress/mode=0
