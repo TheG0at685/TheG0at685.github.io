@@ -40,6 +40,12 @@ func _process(delta):
 			if $Collision.overlaps_area(enemy.get_node("Collision")):
 				get_parent().player_bullets.erase(self)
 				queue_free()
+		if get_parent().get_node("Player").godmode:
+			scale = Vector2(100, 100)
+			speed = 2500
+		else:
+			scale = Vector2(2, 2)
+			speed = 500
 				
 	# Get rid of the bullet if it's to far away to prevent lag
 	if position.distance_to(get_parent().get_node("Player").position) > 4000:

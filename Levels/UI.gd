@@ -46,17 +46,10 @@ func get_distance_to_closesed_door():
 func level_transition(reset=false):
 	if reset:
 		done_transition = false
-		$Speed.scale = Vector2(0.01, 0.01)
 		var power_ups = ["speed"]
 		rand_value = power_ups[randi() % power_ups.size()]
 		if rand_value == "speed":
 			get_parent().get_node("Player").SPEED *= 1
-	if rand_value == "speed":
-		$Speed.visible = true
-			
-		if $Speed.scale.x < 1:
-			$Speed.scale.x += 0.01
-			$Speed.scale.y += 0.01
 		
 		else:
 			done_transition = true

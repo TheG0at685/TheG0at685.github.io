@@ -1,18 +1,20 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Levels/UI.gd" type="Script" id=1]
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Levels/Level.gd" type="Script" id=3]
 [ext_resource path="res://Levels/Target.gd" type="Script" id=4]
-[ext_resource path="res://Assets/Images/egypt_bg.jpeg" type="Texture" id=5]
+[ext_resource path="res://Assets/Images/desert_65x36.png" type="Texture" id=5]
 [ext_resource path="res://Assets/Images/costume8 (1).png" type="Texture" id=6]
-[ext_resource path="res://Assets/Images/speed.png" type="Texture" id=7]
+[ext_resource path="res://Levels/ParallaxBackground2.gd" type="Script" id=9]
 
 [sub_resource type="SphereMesh" id=3]
 
 [sub_resource type="QuadMesh" id=6]
 
-[sub_resource type="QuadMesh" id=7]
+[sub_resource type="QuadMesh" id=8]
+
+[sub_resource type="QuadMesh" id=9]
 
 [node name="Level" type="Node2D"]
 z_index = 1
@@ -43,22 +45,45 @@ mesh = SubResource( 6 )
 scale = Vector2( 0.005, 0.01 )
 texture = ExtResource( 6 )
 
-[node name="Speed" type="Sprite" parent="UI"]
-visible = false
-position = Vector2( 519, 221 )
-scale = Vector2( 0.8, 0.5 )
-texture = ExtResource( 7 )
+[node name="ParallaxBackground2" type="ParallaxBackground" parent="."]
+layer = -101
+script = ExtResource( 9 )
 
-[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
-
-[node name="Sprite" type="Sprite" parent="ParallaxBackground"]
-position = Vector2( 506, 296 )
-scale = Vector2( 3.42642, 5.60714 )
+[node name="Sprite" type="Sprite" parent="ParallaxBackground2"]
+position = Vector2( -90.9999, 367 )
+scale = Vector2( 8.87692, 10.2778 )
 texture = ExtResource( 5 )
+offset = Vector2( -15.1962, -0.0344505 )
 
-[node name="backdrop" type="MeshInstance2D" parent="ParallaxBackground"]
-visible = false
-self_modulate = Color( 0, 0, 0, 0.843137 )
-position = Vector2( 481, 261 )
-scale = Vector2( 2000, 1000 )
-mesh = SubResource( 7 )
+[node name="Sprite2" type="Sprite" parent="ParallaxBackground2"]
+position = Vector2( 485, 380 )
+scale = Vector2( 8.87692, 10.2778 )
+texture = ExtResource( 5 )
+offset = Vector2( -15.1962, -0.0344505 )
+
+[node name="Sprite3" type="Sprite" parent="ParallaxBackground2"]
+position = Vector2( 1050, 389 )
+scale = Vector2( 8.87692, 10.2778 )
+texture = ExtResource( 5 )
+offset = Vector2( -15.1962, -0.0344505 )
+
+[node name="Sprite4" type="Sprite" parent="ParallaxBackground2"]
+position = Vector2( 1622, 400 )
+scale = Vector2( 8.87692, 10.2778 )
+texture = ExtResource( 5 )
+offset = Vector2( -15.1962, -0.0344505 )
+
+[node name="Sand" type="MeshInstance2D" parent="ParallaxBackground2"]
+modulate = Color( 1, 0.682353, 0.203922, 1 )
+position = Vector2( 487, 5549 )
+scale = Vector2( 2000, 10000 )
+mesh = SubResource( 8 )
+
+[node name="Sky" type="CanvasLayer" parent="."]
+layer = -128
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="Sky"]
+modulate = Color( 0.0117647, 0.313726, 0.419608, 1 )
+position = Vector2( -76, -6 )
+scale = Vector2( 5000, 5000 )
+mesh = SubResource( 9 )

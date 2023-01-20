@@ -23,13 +23,11 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if not $UI.done_transition:
-		$UI.level_transition()
-		$ParallaxBackground/backdrop.visible = true
-	else:
-		$ParallaxBackground/backdrop.visible = false
+	pass
 	
 func change_level(position):
+	# Reset the scrolling background
+	$ParallaxBackground2.offset = Vector2(0, 0)
 	for enemy in enemys:
 		enemy.queue_free()
 	enemys.clear()
