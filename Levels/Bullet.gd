@@ -7,6 +7,7 @@ var speed = 500
 # determines if it is the player or the enemy bullet
 var side
 
+
 var current_level
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -36,7 +37,7 @@ func _process(delta):
 	if side == "player":
 		# Logic for player bullets
 		for enemy in get_parent().enemys:
-			if $Collision.overlaps_body(enemy):
+			if $Collision.overlaps_area(enemy.get_node("Collision")):
 				get_parent().player_bullets.erase(self)
 				queue_free()
 				

@@ -106,4 +106,8 @@ script = ExtResource( 3 )
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource( 9 )
 
+[node name="damage cooldown" type="Timer" parent="."]
+wait_time = 0.2
+
 [connection signal="timeout" from="CoyoteTimer" to="." method="_on_CoyoteTimer_timeout"]
+[connection signal="timeout" from="damage cooldown" to="." method="_on_damage_cooldown_timeout"]

@@ -1,12 +1,14 @@
-extends Area2D
+extends Timer
 
 
-var trans_data = {"level": round(rand_range(3, 8)), "position": Vector2(0, 0)}
+# Declare member variables here. Examples:
+# var a = 2
+# var b = "text"
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	wait_time = rand_range(4, 6)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

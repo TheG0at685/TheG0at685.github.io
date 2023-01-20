@@ -33,6 +33,8 @@ var respawn = Vector2()
 
 var current_level
 
+var hurt = false
+
 func _ready():
 	pass
 	
@@ -76,9 +78,31 @@ func god_mode():
 		position.x += 10
 	if Input.is_action_pressed("left"):
 		position.x -= 10
-	if Input.is_key_pressed(2):
-		print(1)
+	if Input.is_key_pressed(KEY_1):
+		get_parent().level = 1
 		get_parent().change_level(Vector2(0, 0))
+	if Input.is_key_pressed(KEY_2):
+		get_parent().level = 2
+		get_parent().change_level(Vector2(0, 0))
+	if Input.is_key_pressed(KEY_3):
+		get_parent().level = 3
+		get_parent().change_level(Vector2(0, 0))
+	if Input.is_key_pressed(KEY_4):
+		get_parent().level = 4
+		get_parent().change_level(Vector2(0, 0))
+	if Input.is_key_pressed(KEY_5):
+		get_parent().level = 5
+		get_parent().change_level(Vector2(0, 0))
+	if Input.is_key_pressed(KEY_6):
+		get_parent().level = 6
+		get_parent().change_level(Vector2(0, 0))
+	if Input.is_key_pressed(KEY_7):
+		get_parent().level = 7
+		get_parent().change_level(Vector2(0, 0))
+	if Input.is_key_pressed(KEY_8):
+		get_parent().level = 8
+		get_parent().change_level(Vector2(0, 0))
+	health = 100
 		
 	
 		
@@ -305,6 +329,7 @@ func create_bullet():
 	bullet_instance.position = position
 	bullet_instance.look_at(get_global_mouse_position())
 	bullet_instance.rotation_degrees += 180 + rand_range(-5, 5)
+
 	
 	
 func die():
@@ -315,16 +340,28 @@ func die():
 		if $Collision.overlaps_area(bullet.get_node("Collision")):
 			health -= 15
 			
+	for enemy in get_parent().enemys:
+		if $Collision.overlaps_area(enemy.get_node("Collision")):
+			if not hurt:
+				health -= 15
+				hurt = true
+				$"damage cooldown".start()
+			
 	if health < 0:
 		health = 100
 		position = respawn
 		position = Vector2(0,0)
 		motion = Vector2(0,1000)
+		for enemy in get_parent().enemys:
+			enemy.queue_free()
+			get_parent().enemys.erase(enemy)
+		get_parent().level = 1
+		get_parent().change_level(Vector2(0, 0))
 
 	
 func next_level(change):
 	for door in get_parent().level_instance.doors:
-		if $Collision.overlaps_area(door) and Input.is_action_pressed("jump"):
+		if $Collision.overlaps_area(door) and Input.is_action_pressed("jump") and get_parent().enemys.size() == 0:
 			get_parent().level = door.trans_data["level"]
 			get_parent().change_level(door.trans_data["position"])
 			print(get_parent().level)
@@ -338,3 +375,7 @@ func glow():
 		$WorldEnvironment.environment.glow_intensity += 0.5
 	else:
 		$WorldEnvironment.environment.glow_hdr_threshold -= 0.5
+
+
+func _on_damage_cooldown_timeout():
+	hurt = false

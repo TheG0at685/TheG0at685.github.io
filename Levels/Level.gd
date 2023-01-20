@@ -9,13 +9,15 @@ var enemys = []
 
 var level1
 var level_instance
-var level = 7
+var level = 1
 var pause_menu = load("res://Pause menu.tscn")
 var menu_instance = pause_menu.instance()
 
+
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	level1()
+	new_level(1)
 	add_child(menu_instance)
 	# Draw the pause menu after everything else to put it at the front of the scene
 
@@ -28,6 +30,9 @@ func _process(delta):
 		$ParallaxBackground/backdrop.visible = false
 	
 func change_level(position):
+	for enemy in enemys:
+		enemy.queue_free()
+	enemys.clear()
 	remove_child(level_instance)
 	menu_instance.queue_free()
 	$UI.level_transition(true)
@@ -35,64 +40,36 @@ func change_level(position):
 		remove_child(e)
 	if level == 1:
 		$Player.position = position
-		level1()
+		new_level(1)
 	if level == 2:
 		$Player.position = position
-		level2()
+		new_level(2)
 	if level == 3:
 		$Player.position = position
-		level3()
+		new_level(3)
 	if level == 4:
 		$Player.position = position
-		level4()
+		new_level(4)
 	if level == 5:
 		$Player.position = position
-		level5()
+		new_level(5)
 	if level == 6:
 		$Player.position = position
-		level6()
+		new_level(6)
 	if level == 7:
 		$Player.position = position
-		level7()
+		new_level(7)
+	if level == 8:
+		$Player.position = position
+		new_level(8)
 		
 	pause_menu = load("res://Pause menu.tscn")
 	menu_instance = pause_menu.instance()
 	add_child(menu_instance)
 		
-func level1():
-	level1 = load("res://Level1.tscn")
+func new_level(level):
+	var level_format = "res://Level%d.tscn"
+	level1 = load(level_format % [level])
 	level_instance = level1.instance()
 	add_child(level_instance)
 	
-func level2():
-	level1 = load("res://Level2.tscn")
-	level_instance = level1.instance()
-	add_child(level_instance)
-	
-func level3():
-	level1 = load("res://Level3.tscn")
-	level_instance = level1.instance()
-	add_child(level_instance)
-	
-func level4():
-	level1 = load("res://Level4.tscn")
-	level_instance = level1.instance()
-	add_child(level_instance)
-	
-		
-func level5():
-	level1 = load("res://Level5.tscn")
-	level_instance = level1.instance()
-	add_child(level_instance)
-	
-func level6():
-	level1 = load("res://Level6.tscn")
-	level_instance = level1.instance()
-	add_child(level_instance)
-
-func level7():
-	level1 = load("res://Level7.tscn")
-	level_instance = level1.instance()
-	add_child(level_instance)
-
-
