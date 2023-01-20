@@ -66,6 +66,8 @@ func _physics_process(delta):
 	$Gun_body.look_at(get_parent().get_node("Target").position)
 
 func god_mode():
+	if not $AudioStreamPlayer2D.playing:
+		$AudioStreamPlayer2D.play()
 	motion.x = 0
 	motion.y = 10
 	can_fire = true
@@ -311,7 +313,6 @@ func fire_gun(x, y):
 		motion.y -= GRAVITY
 	create_bullet()
 	
-	
 		
 func maxi(equ, maximum):
 	# Takes an equation and returns the number. If the number is over max, return max
@@ -364,7 +365,7 @@ func next_level(change):
 		if $Collision.overlaps_area(door) and Input.is_action_pressed("jump") and get_parent().enemys.size() == 0:
 			get_parent().level = door.trans_data["level"]
 			get_parent().change_level(door.trans_data["position"])
-			print(get_parent().level)
+		
 	
 		
 	
@@ -379,3 +380,4 @@ func glow():
 
 func _on_damage_cooldown_timeout():
 	hurt = false
+

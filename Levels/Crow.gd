@@ -107,6 +107,7 @@ func _on_attack_cooldown_timeout():
 	attacking = true
 	$"attack cooldown".stop()
 	$"attack length".start()
+	$AudioStreamPlayer2D.play()
 	
 
 

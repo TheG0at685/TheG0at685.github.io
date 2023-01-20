@@ -23,7 +23,7 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	pass
+	play_music()
 	
 func change_level(position):
 	# Reset the scrolling background
@@ -71,3 +71,12 @@ func new_level(level):
 	level_instance = level1.instance()
 	add_child(level_instance)
 	
+func play_music():
+	if not $AudioStreamPlayer2D.playing:
+		if not $Player.godmode:
+			$AudioStreamPlayer2D.play()
+	if $Player.godmode:
+		$AudioStreamPlayer2D.stop()
+	else:
+		$Player/AudioStreamPlayer2D.stop()
+	$AudioStreamPlayer2D.position = $Player.position
