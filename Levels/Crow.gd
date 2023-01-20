@@ -78,7 +78,7 @@ func shot():
 	# Checks if the bird has been shot
 	for bullet in get_tree().root.get_child(0).player_bullets:
 		if $Collision.overlaps_area(bullet.get_node("Collision")):
-			health -= 1
+			health -= player.strength
 			# Push the bird back
 			if bullet.position.x < position.x:
 				position.x += 8

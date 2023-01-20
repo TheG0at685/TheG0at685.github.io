@@ -29,6 +29,7 @@ var health = 100
 
 var respawn = Vector2()
 
+var strength = 10
 
 
 var current_level

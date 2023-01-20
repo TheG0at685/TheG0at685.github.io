@@ -66,6 +66,8 @@ func change_level(position):
 	add_child(menu_instance)
 		
 func new_level(level):
+	if level > 2:
+		$UI.coins += 10
 	var level_format = "res://Level%d.tscn"
 	level1 = load(level_format % [level])
 	level_instance = level1.instance()

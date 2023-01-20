@@ -2,6 +2,7 @@ extends CanvasLayer
 
 var done_transition = true
 var rand_value
+var coins = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -12,6 +13,7 @@ func _ready():
 func _process(delta):
 	visible = true
 	door_open()
+	$"Coin counter/Label".text = str(coins)
 
 func door_open():
 	for door in get_parent().level_instance.doors:
