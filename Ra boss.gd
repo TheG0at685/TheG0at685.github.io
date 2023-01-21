@@ -8,7 +8,7 @@ var can_horizontal_attack = false
 var can_explode = false
 var explodeing = false
 
-var health = 1000
+var health = 10000
 
 var show_credits = false
 var dead = false
