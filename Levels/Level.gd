@@ -60,6 +60,9 @@ func change_level(position):
 	if level == 8:
 		$Player.position = position
 		new_level(8)
+	if level == 9:
+		$Player.position = position
+		new_level(9)
 		
 	pause_menu = load("res://Pause menu.tscn")
 	menu_instance = pause_menu.instance()
@@ -75,10 +78,12 @@ func new_level(level):
 	
 func play_music():
 	if not $AudioStreamPlayer2D.playing:
-		if not $Player.godmode:
+		if not $Player.godmode or level == 9:
 			$AudioStreamPlayer2D.play()
-	if $Player.godmode:
+	if $Player.godmode or level == 9:
 		$AudioStreamPlayer2D.stop()
+		if not $Player/AudioStreamPlayer2D.playing:
+			$Player/AudioStreamPlayer2D.play()
 	else:
 		$Player/AudioStreamPlayer2D.stop()
 	$AudioStreamPlayer2D.position = $Player.position

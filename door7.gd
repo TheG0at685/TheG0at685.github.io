@@ -1,7 +1,7 @@
 extends Area2D
 
 
-var trans_data = {"level": round(rand_range(3, 8)), "position": Vector2(0, 0)}
+var trans_data = {"level": 8, "position": Vector2(0, 0)}
 
 
 # Called when the node enters the scene tree for the first time.

@@ -33,7 +33,7 @@ script = ExtResource( 3 )
 
 [node name="bird" type="AnimatedSprite" parent="."]
 frames = SubResource( 11 )
-frame = 5
+frame = 8
 playing = true
 
 [node name="Collision" type="Area2D" parent="."]

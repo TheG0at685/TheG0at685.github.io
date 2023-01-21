@@ -58,6 +58,7 @@ scale = Vector2( 0.005, 0.01 )
 texture = ExtResource( 6 )
 
 [node name="Coin counter" type="Sprite" parent="UI"]
+visible = false
 position = Vector2( 968, 54 )
 scale = Vector2( 0.13, 0.135 )
 texture = ExtResource( 12 )

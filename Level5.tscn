@@ -5,7 +5,7 @@
 [ext_resource path="res://particle (1).png" type="Texture" id=3]
 [ext_resource path="res://Levels/OnOff tiles.gd" type="Script" id=4]
 [ext_resource path="res://Level5.gd" type="Script" id=5]
-[ext_resource path="res://door4.gd" type="Script" id=6]
+[ext_resource path="res://door5.gd" type="Script" id=6]
 [ext_resource path="res://Assets/Images/spike.png" type="Texture" id=7]
 [ext_resource path="res://Assets/Images/water.png" type="Texture" id=8]
 
