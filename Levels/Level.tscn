@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://Levels/UI.gd" type="Script" id=1]
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=2]
@@ -11,7 +11,6 @@
 [ext_resource path="res://Levels/ParallaxBackground2.gd" type="Script" id=9]
 [ext_resource path="res://Assets/sounds/658266__matrixxx__retro-inspect-sound-ui-or-in-game-notification.wav" type="AudioStream" id=10]
 [ext_resource path="res://Assets/sounds/Goose theme.mp3" type="AudioStream" id=11]
-[ext_resource path="res://Assets/sounds/Coin-1.png.png" type="Texture" id=12]
 [ext_resource path="res://Assets/Images/speed.png" type="Texture" id=13]
 [ext_resource path="res://Levels/Sprite.gd" type="Script" id=14]
 [ext_resource path="res://Assets/Images/strength.png" type="Texture" id=15]
@@ -61,7 +60,6 @@ texture = ExtResource( 6 )
 visible = false
 position = Vector2( 968, 54 )
 scale = Vector2( 0.13, 0.135 )
-texture = ExtResource( 12 )
 
 [node name="Label" type="Label" parent="UI/Coin counter"]
 margin_left = -1384.62
