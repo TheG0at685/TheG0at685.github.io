@@ -8,7 +8,7 @@ var can_horizontal_attack = false
 var can_explode = false
 var explodeing = false
 
-var health = 10000
+var health = 3000
 
 var show_credits = false
 var dead = false
@@ -24,6 +24,7 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	print(can_horizontal_attack)
 	if health > -1:
 		prep_hor()
 		if explodeing:
@@ -77,7 +78,7 @@ func prep_hor():
 			position.y -= 1 * speed
 	
 	elif position.distance_to(get_tree().root.get_child(0).get_node("Player").position) > 400:
-		can_horizontal_attack = false
+		can_horizontal_attack = true
 		if position.x > player.position.x:
 			position.x -= 1 * speed
 		else:
@@ -96,6 +97,10 @@ func prep_exp():
 		explodeing = true
 		
 func animation():
+	if player.position.x > position.x:
+		$ra.flip_h = true
+	else:
+		$ra.flip_h = false
 	if not explodeing and get_tree().root.get_child(0).enemy_bullets.size() == 0:
 		$ra.animation = "default"
 	if explodeing:
@@ -115,6 +120,7 @@ func shot():
 	
 func _on_Timer_timeout():
 	if can_horizontal_attack:
+		
 		horazontil_attack()
 	
 

@@ -159,7 +159,6 @@ func apply_gravity():
 	if is_on_floor() and motion.y > 0:
 		jump_count=1
 		motion.y=1
-		#I changed this from 0 to 1 to make sure jump code detects that we are touching the floor
 	elif is_on_wall() and motion.y > 0:
 		if wall_slide_speed < wall_slide_max:
 			motion.y += 1
