@@ -13,7 +13,7 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if Input.is_action_just_pressed("click") and shots > 0:
-		apply_central_impulse(Vector2(get_global_mouse_position().x - position.x, abs(get_global_mouse_position().y - position.y)*-1)*2)
+		apply_central_impulse(Vector2(get_global_mouse_position().x - position.x, abs(get_global_mouse_position().y - position.y)*-1)*5)
 		shots -= 1
 	if shots < 1 and shots > - 1:
 		print(1)
