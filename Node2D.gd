@@ -1,23 +1,30 @@
 extends Node2D
 
 
-onready var game = load("res://game.tscn")
-onready var game_instance = game.instance()
+var enemys = []
 
-var score = 0
+var round_counter = 1
 
-
+var showed_game_over = false
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	reset_game()
+	pass # Replace with function body.
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	$score.text = str(score)
+	round_counter += 1
 
-func reset_game():
-	
-	var game = load("res://game.tscn")
-	var game_instance = game.instance()
-	add_child(game_instance)
+
+
+func _on_Enemy_spawn_timeout():
+	var enemy = load("res://Enemy.tscn")
+	var enemy_instance = enemy.instance()
+	add_child(enemy_instance)
+	$"Enemy spawn".wait_time = 5/round((round_counter/1000)+1)
+	$"Enemy spawn".start()
+
+func game_over():
+	if not showed_game_over:
+		add_child(load("res://Game over.tscn").instance())
+		showed_game_over = true

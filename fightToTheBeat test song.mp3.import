@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/fightToTheBeat test song.mp3-78d73283485f2156d29e4f014319c027.mp3str"
+
+[deps]
+
+source_file="res://fightToTheBeat test song.mp3"
+dest_files=[ "res://.import/fightToTheBeat test song.mp3-78d73283485f2156d29e4f014319c027.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0
