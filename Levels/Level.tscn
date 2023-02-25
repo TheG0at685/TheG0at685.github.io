@@ -1,0 +1,167 @@
+[gd_scene load_steps=22 format=2]
+
+[ext_resource path="res://Levels/UI.gd" type="Script" id=1]
+[ext_resource path="res://Player/Player.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Levels/Level.gd" type="Script" id=3]
+[ext_resource path="res://Levels/Target.gd" type="Script" id=4]
+[ext_resource path="res://Assets/Images/desert_65x36.png" type="Texture" id=5]
+[ext_resource path="res://Assets/Images/costume8 (1).png" type="Texture" id=6]
+[ext_resource path="res://Assets/Images/cover.png" type="Texture" id=7]
+[ext_resource path="res://Levels/Cover.gd" type="Script" id=8]
+[ext_resource path="res://Levels/ParallaxBackground2.gd" type="Script" id=9]
+[ext_resource path="res://Assets/sounds/658266__matrixxx__retro-inspect-sound-ui-or-in-game-notification.wav" type="AudioStream" id=10]
+[ext_resource path="res://Assets/sounds/Goose theme.mp3" type="AudioStream" id=11]
+[ext_resource path="res://Assets/sounds/Coin-1.png.png" type="Texture" id=12]
+[ext_resource path="res://Assets/Images/speed.png" type="Texture" id=13]
+[ext_resource path="res://Levels/Sprite.gd" type="Script" id=14]
+[ext_resource path="res://Assets/Images/strength.png" type="Texture" id=15]
+[ext_resource path="res://Levels/Sprite2.gd" type="Script" id=16]
+
+[sub_resource type="SphereMesh" id=3]
+
+[sub_resource type="QuadMesh" id=6]
+
+[sub_resource type="QuadMesh" id=8]
+
+[sub_resource type="QuadMesh" id=9]
+
+[sub_resource type="QuadMesh" id=10]
+
+[node name="Level" type="Node2D"]
+z_index = 1
+script = ExtResource( 3 )
+
+[node name="Player" parent="." instance=ExtResource( 2 )]
+position = Vector2( 90, 0 )
+scale = Vector2( 0.3, 0.3 )
+
+[node name="Target" type="KinematicBody2D" parent="."]
+script = ExtResource( 4 )
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="Target"]
+scale = Vector2( 10, 10 )
+mesh = SubResource( 3 )
+
+[node name="UI" type="CanvasLayer" parent="."]
+layer = 128
+visible = false
+script = ExtResource( 1 )
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="UI"]
+self_modulate = Color( 0, 0, 0, 0.392157 )
+position = Vector2( 539, 541 )
+scale = Vector2( 147.5, 117 )
+mesh = SubResource( 6 )
+
+[node name="Sprite" type="Sprite" parent="UI/MeshInstance2D"]
+scale = Vector2( 0.005, 0.01 )
+texture = ExtResource( 6 )
+
+[node name="Coin counter" type="Sprite" parent="UI"]
+visible = false
+position = Vector2( 968, 54 )
+scale = Vector2( 0.13, 0.135 )
+texture = ExtResource( 12 )
+
+[node name="Label" type="Label" parent="UI/Coin counter"]
+margin_left = -1384.62
+margin_top = -251.852
+margin_right = -1344.62
+margin_bottom = -220.852
+rect_scale = Vector2( 50, 50 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_outline_modulate = Color( 0.984314, 0.968627, 0.968627, 1 )
+custom_colors/font_color_shadow = Color( 1, 1, 1, 1 )
+text = "
+"
+
+[node name="Sprite" type="Sprite" parent="UI"]
+position = Vector2( 534, 282 )
+texture = ExtResource( 13 )
+script = ExtResource( 14 )
+
+[node name="Sprite2" type="Sprite" parent="UI"]
+position = Vector2( 534, 282 )
+texture = ExtResource( 15 )
+script = ExtResource( 16 )
+
+[node name="ParallaxBackground2" type="ParallaxBackground" parent="."]
+layer = -101
+script = ExtResource( 9 )
+
+[node name="Sprite" type="Sprite" parent="ParallaxBackground2"]
+position = Vector2( -90.9999, 367 )
+scale = Vector2( 8.87692, 10.2778 )
+texture = ExtResource( 5 )
+offset = Vector2( -15.1962, -0.0344505 )
+
+[node name="Sprite2" type="Sprite" parent="ParallaxBackground2"]
+position = Vector2( 485, 380 )
+scale = Vector2( 8.87692, 10.2778 )
+texture = ExtResource( 5 )
+offset = Vector2( -15.1962, -0.0344505 )
+
+[node name="Sprite3" type="Sprite" parent="ParallaxBackground2"]
+position = Vector2( 1050, 389 )
+scale = Vector2( 8.87692, 10.2778 )
+texture = ExtResource( 5 )
+offset = Vector2( -15.1962, -0.0344505 )
+
+[node name="Sprite4" type="Sprite" parent="ParallaxBackground2"]
+position = Vector2( 1622, 400 )
+scale = Vector2( 8.87692, 10.2778 )
+texture = ExtResource( 5 )
+offset = Vector2( -15.1962, -0.0344505 )
+
+[node name="Sand" type="MeshInstance2D" parent="ParallaxBackground2"]
+modulate = Color( 1, 0.682353, 0.203922, 1 )
+position = Vector2( 487, 5549 )
+scale = Vector2( 2000, 10000 )
+mesh = SubResource( 8 )
+
+[node name="Sky" type="CanvasLayer" parent="."]
+layer = -128
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="Sky"]
+modulate = Color( 0.0117647, 0.313726, 0.419608, 1 )
+position = Vector2( -76, -6 )
+scale = Vector2( 5000, 5000 )
+mesh = SubResource( 9 )
+
+[node name="Cover" type="CanvasLayer" parent="."]
+pause_mode = 2
+layer = 127
+script = ExtResource( 8 )
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="Cover"]
+modulate = Color( 0, 0, 0, 1 )
+position = Vector2( 396, 0 )
+scale = Vector2( 2000, 2000 )
+mesh = SubResource( 10 )
+
+[node name="Sprite" type="Sprite" parent="Cover"]
+modulate = Color( 1, 1, 1, 0 )
+position = Vector2( 511, 242 )
+scale = Vector2( 1.06562, 1 )
+texture = ExtResource( 7 )
+
+[node name="Button" type="Button" parent="Cover/Sprite"]
+margin_left = -96.6569
+margin_top = 21.0
+margin_right = -58.6569
+margin_bottom = 41.0
+rect_scale = Vector2( 4, 4 )
+custom_colors/font_color_disabled = Color( 1, 1, 1, 1 )
+custom_colors/font_color_focus = Color( 1, 1, 1, 1 )
+custom_colors/font_color = Color( 0.968627, 0.937255, 0.937255, 1 )
+custom_colors/font_color_hover = Color( 0.937255, 0.905882, 0.905882, 1 )
+custom_colors/font_color_pressed = Color( 0.890196, 0.839216, 0.839216, 1 )
+text = "Play"
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Cover"]
+stream = ExtResource( 10 )
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 11 )
+
+[connection signal="pressed" from="Cover/Sprite/Button" to="Cover" method="_on_Button_pressed"]
